@@ -1,0 +1,93 @@
+我用dreamweaver建立的网页，其中有不规则热区（图像映射区），网页发布后，在ie下点击热区，会出现明显的边框线，但在firefox下就没有，我用了blur函数，但是没有作用，请给出详细的说明
+
+我来帮他解答
+	
+2008-2-6 13:55
+满意回答
+
+blur函数应用在热区上,给你个源代码让你看下:
+<img src="" width="200" height="160" alt="图片"
+hspace="10" align="left" usemap="#yexj00" border="0">
+<map name="yexj00">
+<area shape="rect" coords="50,70,150,150" href="#"
+target="_blank" title="热区" onfocus="this.blur()" />
+</map> 
+
+
+onfocus即聚焦事件,处理方法为blur()方法.
+
+
+
+去除链接虚线和图片热区边框全面分析总结
+
+传统办法，在标签内加属性 代码多，修改难
+
+<a href="link1.htm" onfocus="this.blur()">link1</a>
+
+<a href="link1.htm" onfocus="this.close()">link1</a>
+
+<a href="link1.htm" hidefocus="true">link1</a>
+
+<a href="link1.htm" hidefocus="hidefocus">link1</a>
+
+<a href="link1.htm" hidefocus>link1</a> 非标准
+
+中级办法，全局控制　
+
+CSS实现 增加IE负担，不推荐使用
+
+a{blr:expression(this.onFocus=this.close());}
+
+a{blr:expression(this.onFocus=this.blur());}
+
+HTC实现 IE支持，并有延迟，不推荐
+
+把下面这段代码存为.htc为扩展名的文件
+
+<public:attach event="onfocus" onevent="hscfsy()"/>
+<script language="javascript">
+function hscfsy(){
+this.blur();
+}
+< /script>
+
+样式调用
+
+a {behavior:url(htc文件所在路径地址)}
+
+高级办法，全局控制
+
+遍历实现
+
+window.onload=function()
+{
+for(var ii=0; ii<document.links.length; ii++)
+document.links[ii].onfocus=function(){this.blur()}
+}
+
+将其封装为一个函数
+
+function fHideFocus(tName){
+aTag=document.getElementsByTagName(tName);
+for(i=0;i<aTag.length;i++)aTag[i].hideFocus=true;
+//for(i=0;i<aTag.length;i++)aTag[i].onfocus=function(){this.blur();};
+}
+
+当前是添加一个hidefocus的属性，注释掉的句子是添加onfucus=this.blur();
+然后调用fHideFocus("A");即可把a的虚线框去掉
+通过传递不同的参数 可以去掉更多的虚线框 比如"BUTTON"可以去掉button的
+但要记住参数要用大写字母
+
+应用技巧及疑问
+
+A. map area内链接如何消除链接虚线？
+
+这是一个观念上的错误，其实应该在所在map的图片上加以控制，而不是在area内，参考传统办法
+
+B. 关于onFocus
+
+<a href=“http://blog.csdn.net/alonesword/“ onFocus="this.blur()"> 
+<Img Src="Example.jpg" Border=0> 
+</a>
+
+其中，onFocus是设置鼠标焦点事件的东西，这个可以用，也可以不用，不过为了让更多的浏览器识别的话，建议采用；Border=0 这个才是去除虚线框的关键所在（在网上看到有的人用onFocus=“this.blur（）“来消除虚线框，但在本地测试时，仅仅用这一句是不能消除的）

@@ -1,0 +1,12 @@
+安装教程：
+1、解压并打开文件，双击“PhpStorm-10.0.3.exe”开始安装。
+2、一路默认安装即可。
+3、勾选“创建桌面快捷方式”和“选择关联文件选项（根据自己实际需要勾选）”。
+4、安装完成，勾选运行并点击“finish”，即可运行软件。
+5、开启软件后，会弹出的注册栏目，点击“ok”,
+6、再选择“License server”输入“http://15.idea.lanyus.com/”点击“OK”即可快速激活软件。
+7、安装完成后软件还是英文界面，先不要关闭。
+8、下面我们开始汉化的步骤，在运行的phpstorm10菜单上依次选择File -> Settings -> Appearance&Behavior -> Appearance -> 选中Override default fonts by(not recommended)->选择任何一种中文字体（后面需要，防止出现乱码），文件设置好以后即可关闭软件。
+9、打开下载文件中PhpStorm10汉化包，将里面的“zh_CN文件夹”和“resources_cn.jar”压缩包都打开(注意是打开而不是解压出来),再将zh_CN文件夹下的所有文件拖到刚才打开的resources_cn.jar压缩包的messages文件夹中，并保存。
+10、最后将PhpStorm10汉化包中的“resources_cn.jar”文件复制回C:\Program Files (x86)\JetBrains\PhpStorm 10.0.3\lib目录(注意这是默认的安装目录)，完毕！
+11、运行桌面的快捷方式，便是phpstorm 10.0.3破解版的中文界面了。 
